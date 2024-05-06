@@ -24,13 +24,10 @@ def updateOne( collectionName: str, filter: dict, data: dict ):
   if data is None:
     return "No data is provided to insert"
   
-  if type(data) is not dict:
-    return "Please provide a dict to insert"
-  
   if filter is None:
     filter = dict()
   
-  return collection.update_one(filter, data)
+  return collection.update_one(filter, { "$set": dict(data) })
   
   
 def deleteOne( collectionName: str, filter: dict ):
